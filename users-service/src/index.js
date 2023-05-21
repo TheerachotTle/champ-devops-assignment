@@ -76,6 +76,20 @@ app.get('/user/:id/products', (req, res) => {
   })
 })
 
+app.post("/user/:id/product", (req, res) => {
+  connection.query(
+    "INSERT INTO users.users_product (user_id, product_id) VALUES (?, ?)",
+    [req.params.id, req.body.product],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error creating user product");
+      } else {
+        res.status(201).send(`Product added to user with id ${req.params.id}`);
+      }
+    }
+  );
+});
 app.listen(3000, () => {
   console.log('User service started, listening on port 3000')
 })
