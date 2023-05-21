@@ -31,3 +31,11 @@ services:
     depends_on:
       users-db:
         condition: service_healthy
+
+  reverse-proxy:
+    build: reverse-proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - users-service
+      - products-service
