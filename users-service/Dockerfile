@@ -10,6 +10,7 @@ RUN npm install
 COPY src src
 COPY conf conf
 
-ENV ENV=local
+ENV ENV=prod
 
+EXPOSE 3000
 ENTRYPOINT [ "npm", "start" ]
